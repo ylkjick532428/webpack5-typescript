@@ -1,6 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-
+import { createRoot } from 'react-dom/client';
 import { App } from './App';
-ReactDOM.render(<App/>, 
-document.getElementById('app'));
+
+const container: HTMLElement | null = document.getElementById('app');
+
+if (container) {
+	// Create a root.
+	const root = createRoot(container);
+
+	// During an update, there is no need to pass the container again
+	root.render(<App />);
+}
