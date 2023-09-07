@@ -8,10 +8,6 @@ module.exports = {
     meeting: ['./src/meeting.tsx']
   },
   output: {
-    path: path.resolve(__dirname, './static'),
-    filename: 'bundle.js'
-  },
-  output: {
     path: path.resolve(__dirname, '/static'),
     hashDigestLength: 5,
     filename: '[name].min.js'
