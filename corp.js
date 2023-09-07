@@ -1,21 +1,89 @@
+/* eslint-disable no-console */
 const webpack = require("webpack");
-const path = require("path");
+const fs = require("fs");
 const WebpackDevServer = require("webpack-dev-server");
 const webpackConfig = require("./webpack.config");
-
 const args = process.argv.slice(2);
-let https = false;
-let disableCORP = true;
-if (args.includes("--https")) https = true;
-if (args.includes("--corp")) disableCORP = false;
-console.log("https", https);
-console.log("disableCORP", disableCORP);
+let isHttps = false;
+let isCorp = false;
+let httpsPort = 443;
+let httpPort = 9999;
+let proxyPort = 9998;
+const serverName = "0.0.0.0";
+if (args.includes("--https")) isHttps = true;
+if (args.includes("--corp")) isCorp = true;
+console.log({ isCorp, isHttps });
+
+function green(text) {
+  return "\u001b[1m\u001b[32m" + text + "\u001b[39m\u001b[22m";
+}
 
 function runFunc(err) {
   if (err) {
     console.log(err);
   }
-  console.log("Listening at http://127.0.0.1:9999/index.html");
+  if (isCorp) {
+    if (isCorp) {
+      console.log("USE Shared array buffer test");
+    }
+    console.log(
+      green(
+        `Listening at ${
+          isHttps ? "https://localhost" : `http://127.0.0.1:${httpPort}`
+        }/index.html`,
+      ),
+    );
+  }
+
+  console.log("USE No Shared array buffer test, use below link");
+
+  console.log(
+    green(
+      `Listening at http://127.0.0.1:${
+        isCorp ? proxyPort : httpPort
+      }/index.html`,
+    ),
+  );
+}
+
+if (isCorp) {
+  new WebpackDevServer(
+    {
+      server: {
+        type: isHttps ? "https" : "http",
+        options: {
+          key: fs.readFileSync("build-scripts/localhost.key"),
+          cert: fs.readFileSync("build-scripts/localhost.crt"),
+        },
+      },
+      client: {
+        overlay: {
+          errors: false,
+          warnings: false,
+          runtimeErrors: false,
+        },
+      },
+      port: isHttps ? httpsPort : httpPort,
+      host: serverName,
+      static: "./",
+      headers: {
+        "Cross-Origin-Embedder-Policy": "credentialless",
+        "Cross-Origin-Opener-Policy": "same-origin",
+        "Cross-Origin-Resource-Policy": "cross-origin",
+      },
+      historyApiFallback: true,
+      proxy: !isHttps
+        ? [
+            {
+              path: "/lib/iframe",
+              target: `http://127.0.0.1${proxyPort}/`,
+            },
+          ]
+        : [],
+      allowedHosts: "all",
+    },
+    webpack(webpackConfig),
+  ).start(isHttps ? httpsPort : httpPort, serverName);
 }
 
 new WebpackDevServer(
@@ -30,50 +98,18 @@ new WebpackDevServer(
         runtimeErrors: false,
       },
     },
-    port: 9999,
-    static: {
-      directory: path.resolve(__dirname, "./"),
-    },
-    hot: true,
-    host: "0.0.0.0",
-    open: "http://127.0.0.1:9999/index.html",
+    port: isCorp ? proxyPort : httpPort,
+    host: serverName,
+    static: "./",
     headers: {
-      // 'Cross-Origin-Embedder-Policy': 'unsafe-none',
-      // 'Cross-Origin-Opener-Policy': 'unsafe-none',
+      "Cross-Origin-Embedder-Policy": "unsafe-none",
+      "Cross-Origin-Opener-Policy": "unsafe-none",
     },
-    proxy: [
-      {
-        path: "/meeting.html",
-        target: "http://127.0.0.1:9998/",
-      },
-    ],
+    open: isHttps
+      ? "https://localhost/index.html"
+      : `http://127.0.0.1:${httpPort}/index.html`,
+    historyApiFallback: true,
   },
-  webpack(webpackConfig)
-).start(9999, "0.0.0.0", runFunc);
-
-new WebpackDevServer(
-  {
-    server: {
-      type: "http",
-    },
-    client: {
-      overlay: {
-        errors: false,
-        warnings: false,
-        runtimeErrors: false,
-      },
-    },
-    port: 9998,
-    host: "0.0.0.0",
-    static: {
-      directory: path.resolve(__dirname, "./"),
-    },
-    hot: true,
-    host: "0.0.0.0",
-    headers: {
-      "Cross-Origin-Embedder-Policy": "require-corp",
-      "Cross-Origin-Opener-Policy": "same-origin",
-    },
-  },
-  webpack(webpackConfig)
-).start(9998, "0.0.0.0", runFunc);
+  webpack(webpackConfig),
+).start(isCorp ? proxyPort : httpPort, serverName);
+runFunc();
