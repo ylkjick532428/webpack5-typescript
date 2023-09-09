@@ -39,6 +39,8 @@
     "regenerator-runtime": "^0.14.0",
     "sass": "^1.66.1",
     "sass-loader": "^13.3.2",
+    "stylelint": "^15.10.3",
+    "stylelint-config-standard-scss": "^11.0.0",
     "typescript": "^5.2.2",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
@@ -64,6 +66,7 @@
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "https": "cross-env NODE_ENV=development && cross-env production=development && node corp.js --corp --https",
     "lint": "eslint --ext .js,.ts,tsx ./src",
+    "stylelint": "npx stylelint \"**/*.css\"",
     "prepare": "husky install",
     "start": "cross-env NODE_ENV=development && cross-env production=development && node corp.js"
   },

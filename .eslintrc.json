@@ -21,18 +21,15 @@
       "jsx": true
     },
     "ecmaVersion": "latest",
-    "project": [
-      "./tsconfig.json"
-    ],
+    "project": ["./tsconfig.json"],
     "sourceType": "module",
     "tsconfigRootDir": "."
   },
   // Configuring third-party plugins
-  "plugins": [
-    "react",
-    "@typescript-eslint"
-  ],
+  "plugins": ["react", "@typescript-eslint"],
   "rules": {
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
     "@typescript-eslint/ban-types": [
       "error",
       {
@@ -48,11 +45,11 @@
     "linebreak-style": "off",
     "no-console": "off",
     "no-restricted-syntax": [
-        "error",
-        {
-            "selector": "CallExpression[callee.object.name='console'][callee.property.name!=/^(log|warn|error|info|trace)$/]",
-            "message": "Unexpected property on console object was called"
-        }
+      "error",
+      {
+        "selector": "CallExpression[callee.object.name='console'][callee.property.name!=/^(log|warn|error|info|trace)$/]",
+        "message": "Unexpected property on console object was called"
+      }
     ],
     "no-unused-vars": "off",
     // Enforce the use of the shorthand syntax.
