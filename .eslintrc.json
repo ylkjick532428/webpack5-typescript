@@ -21,12 +21,17 @@
       "jsx": true
     },
     "ecmaVersion": "latest",
-    "project": ["./tsconfig.json"],
+    "project": [
+      "./tsconfig.json"
+    ],
     "sourceType": "module",
     "tsconfigRootDir": "."
   },
   // Configuring third-party plugins
-  "plugins": ["react", "@typescript-eslint"],
+  "plugins": [
+    "react",
+    "@typescript-eslint"
+  ],
   "rules": {
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
@@ -61,9 +66,9 @@
         "endOfLine": "lf",
         "indentStyle": "space",
         "printWidth": 80,
-        "singleQuote": true,
+        "singleQuote": false,
         "tabWidth": 2,
-        "useTabs": true
+        "useTabs": false
       }
     ],
     "react-hooks/exhaustive-deps": "off"
