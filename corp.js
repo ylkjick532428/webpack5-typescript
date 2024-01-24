@@ -30,7 +30,7 @@ function runFunc(err) {
       green(
         `Listening at ${
           isHttps ? "https://localhost" : `http://127.0.0.1:${httpPort}`
-        }/index.html`,
+        }/`,
       ),
     );
   }
@@ -38,11 +38,7 @@ function runFunc(err) {
   console.log("USE No Shared array buffer test, use below link");
 
   console.log(
-    green(
-      `Listening at http://127.0.0.1:${
-        isCorp ? proxyPort : httpPort
-      }/index.html`,
-    ),
+    green(`Listening at http://127.0.0.1:${isCorp ? proxyPort : httpPort}/`),
   );
 }
 
@@ -105,9 +101,7 @@ new WebpackDevServer(
       "Cross-Origin-Embedder-Policy": "unsafe-none",
       "Cross-Origin-Opener-Policy": "unsafe-none",
     },
-    open: isHttps
-      ? "https://localhost/index.html"
-      : `http://127.0.0.1:${httpPort}/index.html`,
+    open: isHttps ? "https://localhost/" : `http://127.0.0.1:${httpPort}/`,
     historyApiFallback: true,
   },
   webpack(webpackConfig),

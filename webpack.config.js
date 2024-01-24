@@ -3,9 +3,7 @@ const path = require("path");
 module.exports = {
   mode: "development",
   entry: {
-    test: ["./src/main.tsx"],
-    index: ["./src/index.jsx"],
-    meeting: ["./src/meeting.tsx"],
+    index: ["./src/index.tsx"],
   },
   output: {
     path: path.resolve(__dirname, "/static"),
@@ -20,6 +18,17 @@ module.exports = {
         use: {
           loader: "babel-loader",
         },
+      },
+      {
+        test: /\.(sa|sc|c)ss$/i,
+        use: [
+          // Creates `style` nodes from JS strings
+          "style-loader",
+          // Translates CSS into CommonJS
+          "css-loader",
+          // Compiles Sass to CSS
+          "sass-loader",
+        ],
       },
     ],
   },

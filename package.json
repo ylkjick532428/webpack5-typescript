@@ -6,11 +6,10 @@
     }
   },
   "dependencies": {
+    "@zoom/meetingsdk": "3.5.0-beta-client-view",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-redux": "^9.1.0",
-    "redux": "^5.0.1",
-    "redux-thunk": "^3.1.0"
+    "react-router-dom": "^6.21.3"
   },
   "devDependencies": {
     "@babel/core": "^7.23.7",
@@ -29,6 +28,7 @@
     "commitizen": "^4.3.0",
     "core-js": "^3.35.0",
     "cross-env": "^7.0.3",
+    "css-loader": "^6.9.1",
     "eslint": "^8.56.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.1.0",
@@ -46,20 +46,22 @@
     "prettier": "^3.2.2",
     "prettier-eslint": "^16.2.0",
     "regenerator-runtime": "^0.14.1",
-    "sass": "^1.69.7",
+    "sass": "^1.70.0",
     "sass-loader": "^14.0.0",
+    "style-loader": "^3.3.4",
     "stylelint": "^16.1.0",
     "stylelint-config-sass-guidelines": "^11.0.0",
     "stylelint-config-standard-scss": "^13.0.0",
     "stylelint-order": "^6.0.4",
     "typescript": "^5.3.3",
-    "webpack": "^5.88.2",
+    "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
   },
   "resolutions": {
     "follow-redirects": "1.15.5",
-    "find-cache-dir": "5.0.0"
+    "find-cache-dir": "5.0.0",
+    "locate-path": "7.2.0"
   },
   "husky": {
     "hooks": {
