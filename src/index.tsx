@@ -11,12 +11,10 @@ const container: HTMLElement | null = document.getElementById("root");
 if (container) {
   // Create a root.
   const root = createRoot(container);
-  const tmpRoot = <Root />;
-
   const router = createBrowserRouter([
     {
       path: "/",
-      element: tmpRoot,
+      element: <Root />,
     },
     {
       path: "/meeting",
@@ -26,8 +24,9 @@ if (container) {
 
   // During an update, there is no need to pass the container again
   root.render(
-    <React.StrictMode>
-      <RouterProvider router={router} />
-    </React.StrictMode>,
+    // https://react.dev/reference/react/StrictMode StrictMode will invoke two time mount
+    // <React.StrictMode>
+    <RouterProvider router={router} />,
+    // </React.StrictMode>,
   );
 }

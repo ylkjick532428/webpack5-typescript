@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const Root = () => {
+  useEffect(() => {
+    console.log("root mount");
+    return () => {
+      console.log("root unmount");
+    };
+  }, []);
   return (
     <>
       <div id="sidebar">
