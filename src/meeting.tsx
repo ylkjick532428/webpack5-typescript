@@ -9,8 +9,11 @@ const MeetingApp: React.FC = () => {
     new URLSearchParams(location.search),
   );
   useEffect(() => {
-    // https://d27xp8zu78jmsf.cloudfront.net/jssdk/2024-01-31-15u3n0/cdn/zoom-meeting-3.1.6.min.js
-    ZoomMtg.setZoomJSLib('https://d27xp8zu78jmsf.cloudfront.net/jssdk/2024-01-31-15u3n0/cdn/lib', '/av');
+    // https://d27xp8zu78jmsf.cloudfront.net/jssdk/2024-01-31-1m7unf/cdn/zoom-meeting-3.1.6.min.js
+    ZoomMtg.setZoomJSLib(
+      "https://d27xp8zu78jmsf.cloudfront.net/jssdk/2024-01-31-1m7unf/cdn/lib",
+      "/av",
+    );
     // ZoomMtg.setZoomJSLib("/node_modules/@zoom/meetingsdk/dist/lib", "/av");
     ZoomMtg.prepareWebSDK();
     ZoomMtg.preLoadWasm();
