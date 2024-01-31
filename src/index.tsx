@@ -1,6 +1,7 @@
 import React from "react";
-import { createRoot } from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 import "./index.css";
 
 import Root from "./root";
@@ -9,24 +10,13 @@ import MeetingApp from "./meeting";
 const container: HTMLElement | null = document.getElementById("root");
 
 if (container) {
-  // Create a root.
-  const root = createRoot(container);
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Root />,
-    },
-    {
-      path: "/meeting",
-      element: <MeetingApp />,
-    },
-  ]);
+  const router = (
+    <Switch>
+      <Route exact path="/" component={Root} />
+      <Route path="/meeting" component={MeetingApp} />
+    </Switch>
+  );
 
   // During an update, there is no need to pass the container again
-  root.render(
-    // https://react.dev/reference/react/StrictMode StrictMode will invoke two time mount
-    // <React.StrictMode>
-    <RouterProvider router={router} />,
-    // </React.StrictMode>,
-  );
+  ReactDOM.render(<Router>{router}</Router>, container);
 }
