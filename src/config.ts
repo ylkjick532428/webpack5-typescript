@@ -26,7 +26,7 @@ export function getExploreName() {
 export const devDefaultConfig = {
   sdkKey: "",
   sdkSecret: "",
-  webEndpoint: "",
+  webEndpoint: "zoom.us",
   meetingNumber: "",
   name: `${getExploreName()}-${Math.floor(Math.random() * 1000)}`,
   email: `${getExploreName()}-${Math.floor(Math.random() * 1000)}@zoom.us`,
