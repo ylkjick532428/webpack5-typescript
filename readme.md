@@ -1,6 +1,7 @@
 1. change you sdk key in config.ts
 2. npm install && npm run corp
 3. open http://127.0.0.1:9999/
+4. if you want to test iframe http://127.0.0.1:9999/iframe.html
 
 if want to test 3.1.6 in you project 
 ## npm install
