@@ -1,11 +1,18 @@
-npx npm-check -u
+1. change you sdk key in config.ts
+2. npm install && npm run corp
+3. open http://127.0.0.1:9999/
 
-# typescript react prettier
+if want to test 3.1.6 in you project 
+## npm install
 
-# update
-npx npm-check
-or 
-npx npm-check-updates
+npm install https://d27xp8zu78jmsf.cloudfront.net/jssdk/3.1.6-2024-01-31-15u3n0-install.tar.gz
+ZoomMtg.setZoomJSLib('https://d27xp8zu78jmsf.cloudfront.net/jssdk/2024-01-31-15u3n0/cdn/lib', '/av');
 
-# [VScode](https://vscode.dev/profile/github/178f750538570c7770d36b5a4b3b1d76)
+## cdn install
+    <script src="https://source.zoom.us/3.1.4/lib/vendor/react.min.js"></script>
+    <script src="https://source.zoom.us/3.1.4/lib/vendor/react-dom.min.js"></script>
+    <script src="https://source.zoom.us/3.1.4/lib/vendor/redux.min.js"></script>
+    <script src="https://source.zoom.us/3.1.4/lib/vendor/redux-thunk.min.js"></script>
+    <script src="https://source.zoom.us/3.1.4/lib/vendor/lodash.min.js"></script>
+    <script src="https://d27xp8zu78jmsf.cloudfront.net/jssdk/2024-01-31-15u3n0/cdn/zoom-meeting-3.1.6.min.js"></script>
 
