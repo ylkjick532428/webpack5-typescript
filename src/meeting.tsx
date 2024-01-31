@@ -9,6 +9,7 @@ const MeetingApp: React.FC = () => {
     new URLSearchParams(location.search),
   );
   useEffect(() => {
+    ZoomMtg.setZoomJSLib("/node_modules/@zoom/meetingsdk/dist/lib", "/av");
     ZoomMtg.prepareWebSDK();
     ZoomMtg.preLoadWasm();
     ZoomMtg.init({
@@ -19,7 +20,7 @@ const MeetingApp: React.FC = () => {
       sdkKey: devDefaultConfig.sdkKey,
       sdkSecret: devDefaultConfig.sdkSecret,
       meetingNumber: devDefaultConfig.meetingNumber,
-      role: "1",
+      role: devDefaultConfig.role,
     });
     ZoomMtg.join({
       meetingNumber: devDefaultConfig.meetingNumber,
@@ -41,11 +42,12 @@ const MeetingApp: React.FC = () => {
     });
 
     ZoomMtg.inMeetingServiceListener("onUserLeave", function (data: any) {
-      ZoomMtg.leaveMeeting({});
       console.log("inMeetingServiceListener onUserLeave", data);
     });
 
-    return () => {};
+    return () => {
+      ZoomMtg.leaveMeeting({});
+    };
   }, []);
 
   return <div></div>;
