@@ -53,7 +53,7 @@ if __name__ == "__main__":
     jack = contributions['Jack Yang']
     tmpResult = {}
     for author, stats in contributions.items():
-        if author in ['Jack', 'Jack.Yang', 'JackYang']:
+        if author in ['Jack', 'Jack.Yang', 'JackYang', 'ylkjick532428']:
             jack['additions'] += stats['additions']
             jack['deletions'] += stats['deletions']
             jack['percentage'] += stats['percentage']
@@ -62,6 +62,7 @@ if __name__ == "__main__":
     if 'Jack' in contributions: del contributions['Jack']
     if 'Jack.Yang' in contributions: del contributions['Jack.Yang']
     if 'JackYang' in contributions: del contributions['JackYang']
+    if 'ylkjick532428' in contributions: del contributions['ylkjick532428']
     
     # 按贡献百分比排序
     sorted_data = sorted(contributions.items(), key=lambda x: x[1]['percentage'], reverse=True)
